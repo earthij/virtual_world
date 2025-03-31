@@ -17,12 +17,16 @@ const s1 = new Segment(p1, p2);
 const s2 = new Segment(p3, p2);
 
 const graph = new Graph([p1, p2, p3], [s1, s2]);
-const graphEditor = new GraphEditor(myCanvas, graph);
+const viewPort = new ViewPort(myCanvas);
+const graphEditor = new GraphEditor(viewPort, graph);
 
 animate();
 
 function animate() {
   ctx.clearRect(0, 0, myCanvas.getAttribute("width"), myCanvas.getAttribute("height"));
+  ctx.save();
+  ctx.scale(1 / viewPort.zoom, 1 / viewPort.zoom);
   graphEditor.display();
+  ctx.restore();
   requestAnimationFrame(animate);
 }
