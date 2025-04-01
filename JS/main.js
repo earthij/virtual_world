@@ -26,6 +26,8 @@ function animate() {
   ctx.clearRect(0, 0, myCanvas.getAttribute("width"), myCanvas.getAttribute("height"));
   ctx.save();
   ctx.scale(1 / viewPort.zoom, 1 / viewPort.zoom);
+  const offset = viewPort.getOffset();
+  ctx.translate(offset.x, offset.y);
   graphEditor.display();
   ctx.restore();
   requestAnimationFrame(animate);
